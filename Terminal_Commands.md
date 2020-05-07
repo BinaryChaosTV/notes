@@ -1,4 +1,7 @@
 # Linux Notes
+## Markdown
+[Visit rwxrob's website on how to use Markdown](https://rwx.gg/markdown)
+
 ## List of Terminal Commands
 
 **clear** - Erase all text on the terminal.  
@@ -14,7 +17,7 @@
 
 **cd** - Base to change directory. Use alone to return *Home*.
 * cd .. - Go to parent directory
-* cd ~ - Go to previous directory
+* cd - - Go to previous directory
 
 **diff** - Tells you the difference between two files.
 
@@ -45,5 +48,9 @@
 
 **i** - Insert mode  
 **:** - Command Mode  
+* :q - Quit without saving
+* :w - Save file
+
 **Ctrl + [** OR **Esc** - Escape  
 **Shift + ZZ** - Save and Quit
+**Shift + ZQ** - Quit without saving
