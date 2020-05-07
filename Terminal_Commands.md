@@ -2,7 +2,8 @@
 ## List of Terminal Commands
 
 **clear** - Erase all text on the terminal.  
-**fg** - Displays an input (like  a loop) on the foreground.
+**fg** - Displays an input (like  a loop) on the foreground.  
+**top** - Display processes running on the system.
 
 ### Directory related
 **pwd** - Show current Directory  
