@@ -15,11 +15,16 @@
 * cd .. - Go to parent directory
 * cd ~ - Go to previous directory
 
+**diff** - Tells you the difference between two files.
+
 ### File / Folder Related
 **mkdir** - Create a folder inside a directory  
-**mv** - move a file from one directory to another. Also used to rename files.
+**mv** - move a file from one directory to another. Also used to rename files.  
 **rm** - Remove a file from a directory
 * rm -rf - Force remove a directory and everything in it. *Be careful when using this*
+
+**cp** - Copy a file or directory
+* cp ~ - Copy from home directory
 
 **vi** - Open a file in *Vim*.  
 **nano** - Open a file in *Nano*. *Just use Vim instead.*  
@@ -28,7 +33,7 @@
 
 ## Terminal Shortcuts
 
-**Ctrl + C** - Cancel an input.
+**Ctrl + C** - Cancel an input.  
 **Ctrl + D** - Uuuuh...yes.
 
 ----
