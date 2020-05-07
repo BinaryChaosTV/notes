@@ -41,7 +41,7 @@
 
 # Vim Commands
 
-[rwx.gg/vim](Visit rwxrob's website for Vim breakdown)
+[Visit rwxrob's website for Vim breakdown](rwx.gg/vim)
 
 **i** - Insert mode  
 **:** - Command Mode  
