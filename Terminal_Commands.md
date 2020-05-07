@@ -17,6 +17,7 @@
 
 ### File / Folder Related
 **mkdir** - Create a folder inside a directory  
+**mv** - move a file from one directory to another. Also used to rename files.
 **rm** - Remove a file from a directory
 * rm -rf - Force remove a directory and everything in it. *Be careful when using this*
 
