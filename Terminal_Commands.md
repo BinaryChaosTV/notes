@@ -8,6 +8,10 @@
 **fg** - Displays an input (like  a loop) on the foreground.  
 **top** - Display processes running on the system.
 **type** <command> - Will tell you what type of command it is.
+**\<command>** - Runs original command if it's being aliased.
+
+**curl <link> > ix** - pull a file as a pastebin.
+**ix < <filename>** - Copy a file as a pastable link.
 
 ### Directory related
 **pwd** - Show current Directory  
