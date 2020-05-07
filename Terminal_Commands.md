@@ -7,6 +7,7 @@
 **clear** - Erase all text on the terminal.  
 **fg** - Displays an input (like  a loop) on the foreground.  
 **top** - Display processes running on the system.
+**type** <command> - Will tell you what type of command it is.
 
 ### Directory related
 **pwd** - Show current Directory  
@@ -14,6 +15,8 @@
 **ls** - Show a list of all files within current directory
 * ls -a - Will also show all hidden files in current directory
 * ls -l - Will show you all files, with details in following order: Read/Write Permissions, Owner / Group, File Size, Last accessed, Name of File.
+
+**ln -s** /path/to/file /path/to/link - Symbolic Link
 
 **cd** - Base to change directory. Use alone to return *Home*.
 * cd .. - Go to parent directory
