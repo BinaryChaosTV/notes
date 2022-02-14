@@ -104,7 +104,7 @@ On the documentation for Jack-Mixer, `appdirs` and `ninja-build` are forgotten. 
 
 `git clone https://github.com/jack-mixer/jack_mixer`
 
-I ran into a proble with the next step where I´d get an error where `msgfmt` don´t exist. If that happens, run the command `sudo apt-get install gettext`.
+I ran into a problem with the next step where I´d get an error where `msgfmt` don´t exist. If that happens, run the command `sudo apt-get install gettext`.
 
 ```
 sed -i -e \
@@ -139,8 +139,11 @@ We add some extra sound modules on PulseAudio to add extra customization to go t
 ```
 load-module module-jack-sink client_name=WebMusic_OUT
 load-module module-jack-sink client_name=Discord_OUT
+load-module module-jack-source client_name=Discord_IN
 ```
 
 I typically place them after the line saying "Load these modules statically".
+
+The `Discord_In` are useful for when you want Discord calls to be able to listen to your music or desktop audio clearly.
 
 
