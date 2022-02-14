@@ -4,8 +4,8 @@ A personal repo sharing some notes on how to install some software and configura
 
 ## Table of Contents
 
-### Learning and Using Linux
+### Learning
 1. [Using Linux](usinglinux.md)
 
-### Installing / Configuring Applications
+### Application Installation & Configuration
 1. [JACK Audio + Cadence](jackaudio.md)
