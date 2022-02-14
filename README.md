@@ -6,6 +6,7 @@ A personal repo sharing some notes on how to install some software and configura
 
 ### Learning
 1. [Using Linux](usinglinux.md)
+2. [Using Vim](usingvim.md)
 
 ### Application Installation & Configuration
 1. [JACK Audio + Cadence](jackaudio.md)
