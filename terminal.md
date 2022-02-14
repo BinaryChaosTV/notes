@@ -1,4 +1,6 @@
-# Terminal Commands
+# Using Terminal
+
+## Commands
 
 **type** <command> - Will tell you what type of command it is.
 
