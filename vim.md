@@ -1,4 +1,6 @@
-# Vim Commands
+# Using Vim
+
+## Commands
 
 [Visit rwxrob's website for Vim breakdown](https://rwx.gg/vim)
 
