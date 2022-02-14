@@ -1,17 +1,10 @@
- Linux Notes
-## Markdown
-[Visit rwxrob's website on how to use Markdown](https://rwx.gg/markdown)
+# Terminal Commands
 
-## List of Terminal Commands
+**type** <command> - Will tell you what type of command it is.
 
 **clear** - Erase all text on the terminal.  
 **fg** - Displays an input (like  a loop) on the foreground.  
 **top** - Display processes running on the system.
-**type** <command> - Will tell you what type of command it is.
-**\<command>** - Runs original command if it's being aliased.
-
-**curl <link> > ix** - pull a file as a pastebin.
-**ix < <filename>** - Copy a file as a pastable link.
 
 ### Directory related
 **pwd** - Show current Directory  
@@ -37,8 +30,7 @@
 **cp** - Copy a file or directory
 * cp ~ - Copy from home directory
 
-**vi** - Open a file in *Vim*.  
-**nano** - Open a file in *Nano*. *Just use Vim instead.*  
+**vi** - Open a file in *Vim*.
 **touch** - Create an empty file, or update last time it's been accessed.  
 **cat** - Displays what's inside a file. *Great for single line files*  
 
