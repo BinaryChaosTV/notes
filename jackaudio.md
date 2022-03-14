@@ -5,13 +5,29 @@ This is a guide on how to set up JACK. JACK is a powerful audio driver for Linux
 These instructions assume you're using `PulseAudio` by default, as we'll be routing JACK through it.
 I am also writing these instructions while using Pop_OS 21.10. However, I've also managed to do this through Linux Mint 20.3 Una, so am assuming this will working on most, if not all Ubuntu-based distros.
 
-## PAVUcontrol
+You can also configure JACK to not use Cadence / Claudia / Catia and
+simply use the light-weight `Qjackctl`. At the time of writing, I opted
+to step away from the KXstudio tools as they're using LADISH, which is
+now deprecated. I will include instructions on how to configure
+`Qjackctl` as well.
+
+##PulseAudio
+
+### PAVUcontrol
 
 Let's install `PAVUcontrol` as it will allow us to direct any application to any audio device. Particularly useful to route Audio Cables to the right place. Unfortunately, PulseAudio doesn't allow us to do this by default.
 
 `sudo apt install pavucontrol`
 
 In the `Configuration` tab, turn off all turn off all unnecessary audio devices. We will return here later once we've set up audio modules in PulseAudio.
+
+### PulseAudio-Module-Jack
+
+As we're feeding PulseAudio through JACK, it's important to install the
+following PA module: `sudo apt install pulseaudio-module-jack`. The
+configuration files for PulseAudio have JACK instructions embedded in
+them already. This will allow you to add virtual cables to customize
+JACK the way you want.
 
 ## Cadence ([Link to Repo](https://github.com/falkTX/Cadence))
 
@@ -68,6 +84,11 @@ In order for to see if you've created the audio cables properly, run `pulseaudio
 
 Jack-Mixer is just that -- A volume mixer for your sound devices. It's a great way to feed your connections' inputs and outputs in Claudia. However, it's not exactly the simplest thing to configure.
 
+Jack-Mixer also appears to be available through the APT repos on Pop_OS.
+You can install it easily with the following command:
+
+`sudo apt install jack-mixer`
+
 ### Dependencies and Requirements
 
 Start by checking your Python version using `Python3 --version`. If it's close to the current release, you'll be fine. You may need to also install `pip` if your distro doesn't currently have it:
@@ -105,3 +126,86 @@ There is currently a bug in Cadence which ignores the `Ignore All Self-Connect R
 ### Catia
 
 Catia is a similar application to Claudia, but is used for the current session only. When you restart your PC, all connections made under Catia are lost. If you want to save your connections, it's best to use Claudia.
+
+## Qjackctl
+
+As mentioned previous, `Qjackctl` is a light-weight JACK tool which
+accomplishes many of the same functions as KXStudio. However, it's not
+as feature-rich. At the time of writing, my needs don't require me to
+use more than this.
+
+To install, simply run the following command through the APT repos:
+
+`sudo apt install Qjackctl`
+
+Qjackctl has a few options: a Connections tab that looks a lot like
+Catia (Which only works for the current session), a Patchbay which persists whenever you reboot your PC (this is the one you likely want) and a Session, which is a sort of mix between Connections and the Patchbay.
+
+Once you click on Setup, you'll want to configure it to your liking.
+Here is how I've set mine up:
+
+### Settings
+
+Samplerate: 48Khz
+Frames/Period: 1024
+Periods/Buffer: 2
+Realtime: checked
+Driver: alsa
+
+Self connect mode: Ignore all self connect requests
+
+Then set your Output/Input devices.
+
+### Misc
+
+I've checked the following boxes:
+
+- Start JACK audio server on application startup
+- Enable system tray icon
+- Start minimized to system tray
+- Save JACK audio server configuration to .jackdrc
+- Enable ALSA Sequencer support
+- Single application instance
+- Replace Connections with Graph button
+
+### Options
+
+Instead of modifying the `/etc/pulse/default.pa`, you can create a bash
+script which will create the JACK audio modules in PulseAudio and which
+will run at system startup.
+
+Create a bash script:
+
+`vi jackpulse.sh`
+
+Then copy the following text:
+
+```
+pacmd load-module module-jack-sink
+pacmd load-module module-jack-source
+pacmd load-module module-jack-sink client_name=WebMusic_OUT
+pacmd load-module module-jack-sink client_name=Discord_OUT
+pacmd load-module module-jack-source client_name=Discord_IN
+pacmd set-default-sink jack_out
+pacmd set-default-source jack_in
+```
+
+This creates a default sink/source for your default speakers and
+microphone. It also creates a few audio cables for my browser / Spotify,
+and another for Discord. Finally, it sets the first cables as my default
+ones.
+
+In `Qjackctl`, toggle `Execute script after Startup` and add the script
+you just created. If you have a Scripts folder for example, you can
+input something that looks like this: `/home/<username>/Scripts/jackpulse.sh`
+
+If you run all your devices through Jack-mixer for example, and you want
+it to start with `Qjackctl`, you can toggle the `Execute script on
+Startup`, and input something like this (based on the instructions
+above in the [JACK-MIXER](#jack-mixer) segment: `jack_mixer -c ~/.config/jack_mixer/config.xml &`
+
+The & is important so you can continue to perform actions w/ Qjackctl.
+
+You'll also want to toggle `Activate Patchbay Persistence` once you've
+configured your connections to your liking and saved the session so you
+it starts whenever you boot your PC.
