@@ -207,26 +207,129 @@ folder from the dotfiles to your $HOME, as well as add the `Scripts`
 folder to $PATH. It creates some new aliases for the terminal, which you can view in `.bashrc`. Finally, it
 enables auto-completion for `gh`.
 
-## Software
+It will also install [Ethan Shoover's Solarized for VIM](https://github.com/altercation/vim-colors-solarized) and [Tim Pope's Pathogen](https://github.com/tpope/vim-pathogen).
 
-Here is a list of some of my favourite softwares. For the most part, it's as simple as clicking install. In other cases however, it requires some additional configuration. Details will either be added in this file, or there will be documentation in another file.
+## Sound Settings
+Sound in Ubuntu-based distros are usually managed by PulseAudio. Even
+though PA is great for simple configurations or the average user, it's not very flexible if you stream or run a podcast for example. For this reason, I like to route PulseAudio through [JACK](https://jackaudio.org/), a connection kit that allows to route your audio any way you want.
 
+### PulseAudio
+#### PAVUControl (PAVUControl)
+Additionally to the [Sound Input & Output Device
+Chooser](#soundinput&outputdevicechooser), PulseAudio Volume Control
+(PAVUControl) is a great little tool which allows you to route different
+applications to different devices easily (Just not two at the same
+time). You can also disable some unused devices in this application,
+such as Digital Cables or unused HDMI sound cables. PAVUControl is a
+great tool to change the default audio device for some applications
+which don't typically allow you to pick your device within the
+application itself (such as Firefox or Spotify). To install, simply type
+the following in a terminal:
+
+  sudo apt install pavucontrol
+
+### JACK
+[JACK website](https://jackaudio.org/)
+I have a whole document explaining how to setup JACK, along with the
+KXStudio suite of software. If you prefer something more lightweight, I
+also have some instructions on using Qjackctl. Find it [here](JACK.md).
+
+Cadence and Claudia uses LADISH as a back-end to manage sessions.
+However, LADISH is now deprecated and has been for several years. The
+replacement to it is [New Session Manager](https://github.com/jackaudio/new-session-manager) (NSM). I don't use NSM as I don't make music myself and doesn't meet my current needs.
+
+### Pipewire
+[PipeWire website](https://pipewire.org/)
+An alternative to JACK (Or complimentary to JACK), PipeWire is a new
+type of Audio driver which strives to become the new norm on Linux, and
+combine the best aspects of PulseAudio and JACK. For the moment, I am
+not too familiar with the installation process of Pipewire (I messed up
+my own audio configuration by playing with it), and it's currently
+unsupported by some Linux applications (mostly games). Some distros,
+such as Fedora, use Pipewire by default.
+
+*More information will be added later once if I ever decide to tinker with
+it again.*
+
+## Gaming
 ### Steam
 [Steam Website](https://store.steampowered.com/about/)
 
-Simply click on `Install Steam`, place the .deb file your downloads folder, then install.
+Click on `Install Steam`, place the .deb file your downloads folder, then install.
 As I have an additional HDD, I like to install my games in that disk drive. Once installed and logged in:
 
 1. Settings:
+  1. Interface -- Run Steam when PC starts, Display web address toggled
+     ON.
+  2. Downloads -- Add HDD to the Steam Library Folders
+  3. Shader Pre-Caching -- Disable Pre-caching. It causes some games to
+     take a long time to load, or not load at all.
+  4. Steam Play -- Enable Steam Play for all titles. Set to latest
+     version of Proton.
 
+## Social Media & Chat Applications
 ### Discord
+[Discord Website](https://discord.com/)
 
+Click on `Download for Linux`, select .deb and place in your downloads
+folder. Then install.
+
+You'll want to configure the Audio for Discord. If you followed the
+documentation I provided in the [JACK section](#jack), you can set the
+Input Device to `JACK source (Discord_IN)`, and Output Device to the
+default (In my case, `JACK sink (PulseAudio JACK Sink)`). I also
+recommend disabling automatic input sensitivity and increasing the
+threshold to ~45dB, unless your microphone already has good sound
+suppresion.
+
+Under Linux Settings, toggle Open Discord on system startup and Minimize
+to tray to ON.
+
+Discord runs as a Chromium browser, and just like Brave, you can disable
+Hardware Acceleration if necessary under the Advanced tab.
+
+### Signal Messaging
+[Signal Website](https://www.signal.org/download/)
+
+Signal is an end-to-end encrypted messaging app for mobile devices.
+However, it also comes with a desktop app for Linux. To install, simply
+click on `Download for Linux` and follow the instructions there.
+
+## Entertainment
 ### Spotify
+[Spotify Website](https://www.spotify.com/ca-en/download/linux/)
 
-### OBS
+Follow the instructions for installing Spotify in the website above. I
+prefer installing it through the .deb package at the bottom of the page.
+At the moment, the Startup behaviour for Spotify doesn´t work on Linux.
+In the off-chance it works however, you can toggle Spotify to start
+Minimized and to minimize when you click the close button.
 
 ### VLC
+[VLC website](https://www.spotify.com/ca-en/download/linux/)
 
-## Sound Settings
+VLC is probably THE best media player to play local videos and music on
+Linux. It supports multiple codecs that the default video and music
+player on Linux doesn't. Just get it. Click on the website above, and
+install it through the CLI.
 
-### JACK
+## Streaming
+### OBS
+[OBS Website](https://obsproject.com/download)
+
+Follow the instructions in the website above to install OBS. FFMPEG is
+necessary to run OBS on Linux. It will be installed at the same time as
+OBS if you follow the instructions from the website.
+
+What makes OBS a fantastic streaming application is its' modularity
+through Plugins. At this point, some plugins are installed by default on
+Linux (such as Browser source), but here is a short list of some I like
+to add.
+
+#### OBS Captions Plugin
+[OBS Captions Plugin](https://github.com/ratwithacompiler/OBS-captions-plugin#installation-linux)
+
+Installation for this plugin is as simple as downloading it from the
+Releases section and drag & drop in the `~/.config/obs-studio/plugins`
+directory. Make sure you place the entire folder in there, and not just
+the files. Restart OBS, and it should load on startup.
