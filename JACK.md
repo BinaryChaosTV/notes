@@ -181,14 +181,11 @@ Create a bash script:
 Then copy the following text:
 
 ```
-pacmd load-module module-jack-sink
-pacmd load-module module-jack-source
-pacmd load-module module-jack-sink client_name=WebMusic_OUT
-pacmd load-module module-jack-sink client_name=Discord_OUT
-pacmd load-module module-jack-source client_name=Discord_IN
-pacmd set-default-sink jack_out
-pacmd set-default-source jack_in
-alsa_out -d hw:Headset,0 -r 44100 -j Headset &
+jack_mixer -c ~/.config/jack_mixer/config.xml &
+pactl load-module module-null-sink media.class=Audio/Sink sink_name=pipe_sink
+pactl load-module module-null-sink media.class=Audio/Sink sink_name=WebMusic_OUT channel_map=stereo
+pactl load-module module-null-sink media.class=Audio/Duplex sink_name=DISCORD_IN_OUT channel_map=stereo
+pactl set-default-sink pipe_sink
 ```
 
 This creates a default sink/source for your default speakers and
