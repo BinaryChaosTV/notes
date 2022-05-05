@@ -238,18 +238,55 @@ Cadence and Claudia uses LADISH as a back-end to manage sessions.
 However, LADISH is now deprecated and has been for several years. The
 replacement to it is [New Session Manager](https://github.com/jackaudio/new-session-manager) (NSM). I don't use NSM as I don't make music myself and doesn't meet my current needs.
 
+As of POP_OS 22.04, the default audio driver is now PipeWire. See the
+next section with instructions on how to set that up.
+
 ### Pipewire
 [PipeWire website](https://pipewire.org/)
-An alternative to JACK (Or complimentary to JACK), PipeWire is a new
-type of Audio driver which strives to become the new norm on Linux, and
-combine the best aspects of PulseAudio and JACK. For the moment, I am
-not too familiar with the installation process of Pipewire (I messed up
-my own audio configuration by playing with it), and it's currently
-unsupported by some Linux applications (mostly games). Some distros,
-such as Fedora, use Pipewire by default.
+As of Pop_OS 22.04, PipeWire is now the default audio driver for the
+distribution. PipeWire is a happy middle between the simplicity of
+PulseAudio and the complexity of JACK, built for the average user.
 
-*More information will be added later once if I ever decide to tinker with
-it again.*
+The best way I've found to set up PipeWire is to set it up similarly to
+JACK, minus some of the extra fluff required by JACK to function
+properly. As such, the only tools I use for my audio is now QJackCTL and
+PAVUControl.
+
+In order to set up PipeWire for my needs, we need to create a quick
+script (which is the same as the `JackPulse.sh` script in the
+[JACK.md](JACK.md) document). Create a new script file called
+`pipepulse.sh`, and paste the following inside:
+
+```
+pactl load-module module-null-sink media.class=Audio/Sink sink_name=pipe_sink
+pactl load-module module-null-sink media.class=Audio/Sink sink_name=WebMusic_OUT channel_map=stereo
+pactl load-module module-null-sink media.class=Audio/Sink sink_name=Discord_OUT channel_map=stereo
+pactl set-default-sink pipe_sink
+```
+
+Notice how we use `pactl` as a command instead of `pacmd`, and the
+slightly different syntax for loading PulseAudio modules.
+All these commands are to load Sinks.
+If we wanted to load a Source, we'd change the `media.class` to
+`Audio/Sink/Source`.
+You can also set it as a Sink/Source by changing the media.class to
+`Audio/Duplex`, if needed.
+
+Have your new script launch on startup through `Startup Applications`.
+Afterwards, follow the instructions for QJackCTL on how to make
+persistant connections through the Patchbay. You'll notice that with the
+removal of Jack_Mixer, it's much simpler.
+
+PipeWire seems to create new audio devices whenever a new application
+launches and requires audio. For example, Discord will use the WebRTC
+(which you can set up in the Patchbay to connect to the `Discord_OUT`
+and your speakers), and Spotify / Brave will also have new devices
+created when they're playing music (Simply connect these to the
+`WebMusic_OUT` Sink).
+
+Honestly, I'm very pleased with PipeWire and very surprised there aren't
+more Distros or application that take advantage of the simplicity behind
+PipeWire.
 
 ## Gaming
 ### Steam
