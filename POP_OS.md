@@ -106,7 +106,7 @@ Personally, I install the application through the .deb file. However, you cannot
 Despite Firefox being the default and privacy-focused browser, I really like Brave for the Brave Rewards and for being privacy focused.
 
 #### Settings:
-  1. Sync -- Restore the sync code via [[#Bitwarden]]. This will sync most of the Brave settings, including your bookmarks and extensions.
+  1. Sync -- Restore the sync code via [Bitwarden](#Bitwarden). This will sync most of the Brave settings, including your bookmarks and extensions.
   2. Appearance -- Set your theme and colours. I like to have the wide address bar.
   3. New tab page -- Set to **Blank Page**
   4. Shields -- Advanced View.
@@ -114,8 +114,8 @@ Despite Firefox being the default and privacy-focused browser, I really like Bra
   6. Social media blocking -- toggle LinkedIn ON, toggle Facebook OFF.
   7. Security and privacy -- Turn daily usage ping and diagnostic reports OFF. Under Site and Shield settings, toggle Location and Notifications to **Don't allow**.
   8. Search engine -- [DuckDuckGo](https://duckduckgo.com), [Startpage](https://startpage.com) or [Brave Search](https://search.brave.com).
-  9. Extensions -- Enable Widevine if planning on using the browser [[#Spotify]] or Netflix.
-  10. Wallet -- Sign in via [[#Bitwarden]]. Change default base currency to CAD. 
+  9. Extensions -- Enable Widevine if planning on using the browser [Spotify](#Spotify) or Netflix.
+  10. Wallet -- Sign in via [Bitwarden](#Bitwarden). Change default base currency to CAD. 
   11. Auto-fill -- Turn off "Offer to save..." for Passwords, Payments and Addresses.
   12. System -- Turn off Brave in the background. Depending on needs, toggle Hardware acceleration OFF.
 
@@ -123,19 +123,19 @@ Despite Firefox being the default and privacy-focused browser, I really like Bra
 Follow the preferences found in my [Terminal Documentation](TERMINAL.md).
 
 ## Audio Settings
-As of 22.04, [[#PipeWire]] is now the default sound driver. We'll use [[#PulseAudio]] modules to route our sound device connections in PipeWire to provide us the flexibility that [JACK](JACK.md) would have provided in the past.
+As of 22.04, [PipeWire](#pipewire) is now the default sound driver. We'll use [PulseAudio](#pulseaudio) modules to route our sound device connections in PipeWire to provide us the flexibility that [JACK](JACK.md) would have provided in the past.
 
 ### PulseAudio
 #### PAVUControl
-Additionally to the [[#Sound Input Output Device Chooser]], PulseAudio Volume Control (PAVUControl) is a great tool which allows you to select which device is used for each application (Just not two at the same time). You can also disable some unused devices in this application, such as Digital Cables or unused HDMI sound cables. PAVUControl is a great tool to change the default audio device for some applications which don't allow you to pick your device within the application itself (such as Firefox or [[#Spotify]]). To install, simply type the following in a terminal:
+Additionally to the [Sound Input Output Device Chooser](#sound-input--output-device-chooser), PulseAudio Volume Control (PAVUControl) is a great tool which allows you to select which device is used for each application (Just not two at the same time). You can also disable some unused devices in this application, such as Digital Cables or unused HDMI sound cables. PAVUControl is a great tool to change the default audio device for some applications which don't allow you to pick your device within the application itself (such as Firefox or [Spotify](#Spotify)). To install, simply type the following in a terminal:
 
 	sudo apt install pavucontrol
 
 ### PipeWire
 [PipeWire website](https://pipewire.org/)
-As of Pop_OS 22.04, PipeWire is now the default audio driver for the distribution. PipeWire is a happy middle between the simplicity of PulseAudio and the complexity of [[JACK]], built for the average user.
+As of Pop_OS 22.04, PipeWire is now the default audio driver for the distribution. PipeWire is a happy middle between the simplicity of PulseAudio and the complexity of [JACK](JACK.md), built for the average user.
 
-The best way I've found to configure PipeWire is to set it up similarly to [[JACK]], minus some of the extra fluff required by [[JACK]] to function properly. As such, the only tools I use for my audio is [QJackCTL](JACK.md#qjackctl) and [[#PAVUControl]].
+The best way I've found to configure PipeWire is to set it up similarly to [JACK](JACK.md), minus some of the extra fluff required by [JACK](JACK.md) to function properly. As such, the only tools I use for my audio is [QJackCTL](JACK.md#qjackctl) and [PAVUControl](#pavucontrol).
 
 In order to set up PipeWire for my needs, we need to create a script to add new virtual cables each time we boot our PC (they don't persist on reboot). Create a new script file called `pipepulse.sh`, and paste the following inside:
 
@@ -150,7 +150,7 @@ Notice how we use `pactl` as a command instead of `pacmd`, and the slightly diff
 
 Have your new script launch on startup through `Startup Applications`. Afterwards, follow the instructions for [QJackCTL](JACK.md#qjackctl) on how to make persistant connections through the Patchbay. You'll notice that with the removal of [Jack_Mixer](JACK.md#jack-mixer), it's much simpler.
 
-PipeWire creates new audio devices whenever a new application launches and requires audio. For example, [[#Discord]] will use the WebRTC (which you can set up in the Patchbay to connect to the `Discord_OUT` and your speakers), and [[#Spotify]] / [[#Brave]] will also have new devices created when they're playing sound (Simply connect these to the `WebMusic_OUT` Sink).
+PipeWire creates new audio devices whenever a new application launches and requires audio. For example, [Discord](#Discord) will use the WebRTC (which you can set up in the Patchbay to connect to the `Discord_OUT` and your speakers), and [Spotify](#Spotify) / [Brave](#Brave) will also have new devices created when they're playing sound (Simply connect these to the `WebMusic_OUT` Sink).
 
 ## Gaming
 ### Steam
@@ -170,7 +170,7 @@ Click on `Install Steam`, place the .deb file your downloads folder, then instal
 
 Click on `Download for Linux`, select .deb and place in your downloads folder. Then install.
 
-You'll want to configure the Audio for Discord. If you followed the documentation I provided in the [[#PipeWire]] section, you can set the Input Device to `pip_sink`, and Output Device  `Discord_OUT`. I also recommend disabling automatic input sensitivity and increasing the threshold to ~45dB, unless your microphone already has good sound suppression.
+You'll want to configure the Audio for Discord. If you followed the documentation I provided in the [PipeWire](#Pipewire) section, you can set the Input Device to `pip_sink`, and Output Device  `Discord_OUT`. I also recommend disabling automatic input sensitivity and increasing the threshold to ~45dB, unless your microphone already has good sound suppression.
 
 Under Linux Settings, toggle Open Discord on system startup and Minimize to tray to ON.
 

@@ -6,9 +6,9 @@ tags: #audio
 
 This is a guide on how to set up JACK, a powerful audio driver for Linux used for media, podcasting, streaming and music production, but can also be for personal use for sound device management. Due to lack of documentation (except perhaps for the Arch Wiki), JACK is sometimes difficult to implement. After scrounging around, I eventually managed to get it working. I'm hoping these notes will help anyone who is having difficulty setting it up.
 
-These instructions assume you're using PulseAudio by default, as we'll be routing JACK through it. I am also writing these instructions while using [[Pop_OS]] 22.04. However, I've also managed to do this through [Linux Mint](https://linuxmint.com), so am assuming this will working on most, if not all debian-based distros.
+These instructions assume you're using PulseAudio by default, as we'll be routing JACK through it. I am also writing these instructions while using [Pop_OS 22.04](POP_OS.md). However, I've also managed to do this through [Linux Mint](https://linuxmint.com), so am assuming this will working on most, if not all debian-based distros.
 
-You can also configure JACK without [[#Cadence]] / [[#Claudia]] / [[#Catia]] and simply use the light-weight [[#Qjackctl]]. At the time of writing, I opted to step away from the KXstudio tools as they're using LADISH, which is now deprecated.
+You can also configure JACK without [Cadence](#cadence) / [Claudia](#claudia) / [Catia](#catia) and simply use the light-weight [Qjackctl](#qjackctl). At the time of writing, I opted to step away from the KXstudio tools as they're using LADISH, which is now deprecated.
 
 ## PulseAudio
 
@@ -27,7 +27,7 @@ As we're feeding PulseAudio through JACK, it's important to install the followin
 ## Cadence 
 [Link to Repo](https://github.com/falkTX/Cadence)
 
-Cadence is an all-in-one type of application by KXStudio that acts as a Front-end for JACK, ALSA and LADISH. However, LADISH is now deprecated and has been for several years. The replacement to it is [New Session Manager](https://github.com/jackaudio/new-session-manager) (NSM). [[#Catia]] is the only application in the KXStudio suite which supports NSM.
+Cadence is an all-in-one type of application by KXStudio that acts as a Front-end for JACK, ALSA and LADISH. However, LADISH is now deprecated and has been for several years. The replacement to it is [New Session Manager](https://github.com/jackaudio/new-session-manager) (NSM). [Catia](#catia) is the only application in the KXStudio suite which supports NSM.
 
 ### Add the Repositories
 
@@ -35,8 +35,7 @@ Navigate to the [KXStudio Repositories](https://kx.studio/Repositories) and foll
 
 ### Installation
 
-Download the .deb for Cadence. It will include all the tools, Carla, Catia and Claudia.
-[Install Cadence](https://kx.studio/Repositories:Applications#cadence)
+Download the .deb for Cadence. It will include all the tools, Carla, Catia and Claudia. [Install Cadence](https://kx.studio/Repositories:Applications#cadence)
 
 ### Configuration
 
@@ -120,11 +119,11 @@ Do **not** toggle the `Run in terminal` option. Leave at Level 0. [Jack_Mixer](#
 
 Connect your inputs and outputs as you see fit. Once all your connections are setup, go ahead and save your Studio. You can then have your studio start automatically when JACK starts ([See Step 1 in Configuration](#configuration)). 
 
-There is currently a bug in [[#Cadence]] which ignores the `Ignore All Self-Connect Requests` option in the settings. That means that everytime you start up your studio, your connections will be reset and you will see connection all over the place. The current workaround is to modify your Studio `.xml` file. **This workaround gets reset every time you save your studio. It's best to do this once all your connections are finalized.** Navigate to `~/.ladish/studios/`, then open your Studio `.xml` file. Add an `a` in the `<parameter path="/engine/self-connect-mode">a</parameter>` line. The `a` tells [[#Cadence]] to ignore all self-connect requests. Save and exit the config file.
+There is currently a bug in [Cadence](#cadence) which ignores the `Ignore All Self-Connect Requests` option in the settings. That means that everytime you start up your studio, your connections will be reset and you will see connection all over the place. The current workaround is to modify your Studio `.xml` file. **This workaround gets reset every time you save your studio. It's best to do this once all your connections are finalized.** Navigate to `~/.ladish/studios/`, then open your Studio `.xml` file. Add an `a` in the `<parameter path="/engine/self-connect-mode">a</parameter>` line. The `a` tells [Cadence](#cadence) to ignore all self-connect requests. Save and exit the config file.
 
 ### Catia
 
-Catia is a similar application to [[#Claudia]], but is used for the current session only. When you restart your PC, all connections made under [[#Catia]] are lost. If you want to save your connections, it's best to use [[#Claudia]].
+Catia is a similar application to [Claudia](#claudia), but is used for the current session only. When you restart your PC, all connections made under Catia are lost. If you want to save your connections, it's best to use [Claudia](#claudia).
 
 ## Qjackctl
 
@@ -134,7 +133,7 @@ To install, simply run the following command through the APT repos:
 
 	sudo apt install Qjackctl
 
-Qjackctl has a few options: a Connections tab that looks a lot like [[#Catia]] (Which only works for the current session), a Patchbay which persists whenever you reboot your PC (this is the one you likely want) and a Session, which is a sort of mix between Connections and the Patchbay.
+Qjackctl has a few options: a Connections tab that looks a lot like [Catia](#catia) (Which only works for the current session), a Patchbay which persists whenever you reboot your PC (this is the one you likely want) and a Session, which is a sort of mix between Connections and the Patchbay.
 
 Once you click on Setup, you'll want to configure it to your liking. Here is how I've set mine up:
 
@@ -189,7 +188,7 @@ In Qjackctl, toggle `Execute script after Startup` and add the script
 you just created. If you have a Scripts folder for example, you can
 input something that looks like this: `/home/<username>/Scripts/jackpulse.sh`
 
-If you run all your devices through [[#JACK-MIXER]] for example, and you want it to start with Qjackctl, you can toggle the `Execute script on Startup`, and input something like this (based on the instructions above in the [JACK-MIXER](#jack-mixer) segment: 
+If you run all your devices through [JACK-MIXER](#jack-mixer) for example, and you want it to start with Qjackctl, you can toggle the `Execute script on Startup`, and input something like this (based on the instructions above in the [JACK-MIXER](#jack-mixer) segment: 
 
 	jack_mixer -c ~/.config/jack_mixer/config.xml &
 
@@ -199,4 +198,4 @@ You'll also want to toggle `Activate Patchbay Persistence` once you've configure
 
 ## Starting JACK on system boot
 
-If you want JACK to start on system boot, simply add [[#Qjackctl]] or [[#Cadence]] (depending on the option you choose) to your startup applications.
+If you want JACK to start on system boot, simply add [Qjackctl](#qjackctl) or [Cadence](#cadence) (depending on the option you choose) to your startup applications.

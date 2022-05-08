@@ -6,7 +6,7 @@ Open the terminal (Super + T)
 1. Preferences:
 	1. Profile > Colours > Text and Background Color > Solarized Dark
 	2. Profile > Colours > Palette > Solarized
-2. Install [[Vim]] -- `sudo apt install vim`
+2. Install [Vim](VIM.md) -- `sudo apt install vim`
 3. Install [Git](https://git-scm.com/download/linux) -- Add the repo and then `sudo apt update; sudo install git`.
 4. Install [gh](https://github.com/cli/cli/blob/trunk/docs/install_linux.md) (GitHub CLI)
 	1. Sign in by using `gh auth login`, then follow the instructions via HTTPS and through a browser.
@@ -59,7 +59,7 @@ It will also install [Ethan Shoover's Solarized for VIM](https://github.com/alte
 `cp` - Copy a file or directory
 	`cp ~` - Copy from home directory
 
-`vi` - Open a file in *[[Vim]]*.
+`vi` - Open a file in *[Vim](VIM.md)*.
 `touch` - Create an empty file, or update last time it's been accessed.  
 `cat` - Displays what's inside a file. *Great for single line files*  
 
