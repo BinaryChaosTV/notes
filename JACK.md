@@ -1,8 +1,7 @@
 tags: #audio
 
 # JACK & Cadence
-[JACK website](https://jackaudio.org/)
-
+[JACK Website](https://jackaudio.org/)
 
 This is a guide on how to set up JACK, a powerful audio driver for Linux used for media, podcasting, streaming and music production, but can also be for personal use for sound device management. Due to lack of documentation (except perhaps for the Arch Wiki), JACK is sometimes difficult to implement. After scrounging around, I eventually managed to get it working. I'm hoping these notes will help anyone who is having difficulty setting it up.
 
@@ -11,9 +10,7 @@ These instructions assume you're using PulseAudio by default, as we'll be routin
 You can also configure JACK without [Cadence](#cadence) / [Claudia](#claudia) / [Catia](#catia) and simply use the light-weight [Qjackctl](#qjackctl). At the time of writing, I opted to step away from the KXstudio tools as they're using LADISH, which is now deprecated.
 
 ## PulseAudio
-
 ### PAVUcontrol
-
 Let's install PAVUcontrol as it will allow us to direct any application to any audio device. Particularly useful to route Audio Cables to the right place. Unfortunately, PulseAudio doesn't allow us to do this by default.
 
 	sudo apt install pavucontrol
@@ -21,24 +18,20 @@ Let's install PAVUcontrol as it will allow us to direct any application to any a
 In the `Configuration` tab, turn off all turn off all unnecessary audio devices. We will return here later once we've set up audio modules in PulseAudio.
 
 ### PulseAudio-Module-Jack
-
 As we're feeding PulseAudio through JACK, it's important to install the following PA module: `sudo apt install pulseaudio-module-jack`. The configuration files for PulseAudio have JACK instructions embedded in them already. This will allow you to add virtual cables to customize JACK the way you want.
 
 ## Cadence 
-[Link to Repo](https://github.com/falkTX/Cadence)
+[Cadence Repo](https://github.com/falkTX/Cadence)
 
 Cadence is an all-in-one type of application by KXStudio that acts as a Front-end for JACK, ALSA and LADISH. However, LADISH is now deprecated and has been for several years. The replacement to it is [New Session Manager](https://github.com/jackaudio/new-session-manager) (NSM). [Catia](#catia) is the only application in the KXStudio suite which supports NSM.
 
 ### Add the Repositories
-
 Navigate to the [KXStudio Repositories](https://kx.studio/Repositories) and follow the instructions on how to add the necessary repos to install Cadence.
 
 ### Installation
-
 Download the .deb for Cadence. It will include all the tools, Carla, Catia and Claudia. [Install Cadence](https://kx.studio/Repositories:Applications#cadence)
 
 ### Configuration
-
 Open Cadence and follow the instructions below to have JACK start when you boot your PC.
 
 1. Toggle on `Auto-start JACK or LADISH at login`
@@ -76,7 +69,7 @@ The `Discord_In` is useful for when you want Discord calls to be able to listen 
 In order for to see if you've created the audio cables properly, run `pulseaudio -k` in your terminal. Check to see if your newly created cables appear in your sound devices menu. Otherwise, reboot your PC.
 
 ## JACK-MIXER 
-[Link to Repo](https://github.com/jack-mixer/jack_mixer)
+[Jack_Mixer Repo](https://github.com/jack-mixer/jack_mixer)
 
 Jack-Mixer is just that -- A volume mixer for your sound devices. It's a great way to feed your connections' inputs and outputs in Claudia. However, it's not exactly the simplest thing to configure.
 
@@ -88,7 +81,6 @@ You can install it easily with the following command:
 Otherwise, follow the instructions below to install Jack-Mixer.
 
 ### Dependencies and Requirements
-
 Start by checking your Python version using `Python3 --version`. If it's close to the current release, you'll be fine. You may need to also install `pip` if your distro doesn't currently have it:
 
 ```
@@ -104,11 +96,9 @@ On the documentation for Jack-Mixer, `python3-appdirs`, `ninja-build`, and `gett
 `sudo apt-get install python3-appdirs ninja-build gettext`
 
 ### Configure Jack_Mixer
-
 Once it's all installed and running, configure `Jack_Mixer` and add inputs for the speakers and microphone. Add additional inputs for your other programs (the ones for which you created modules in you intend on connecting separately (such as Discord, Google Voice, Spotify, etc.). Save the config as `config.xml` under the path `~/.config/jack_mixer/`
 
 ## Claudia
-
 Claudia is a visual front-end for LADISH connections. It allows you to connect your audio devices to one another. It also allows you to connect Equalizers and Mixers, such as [Jack_Mixer](#jack-mixer), and saves your connections as a studio so they can be loaded when you start JACK.
 
 In Claudia, add a custom application and add the following in the command text box:
@@ -122,11 +112,9 @@ Connect your inputs and outputs as you see fit. Once all your connections are se
 There is currently a bug in [Cadence](#cadence) which ignores the `Ignore All Self-Connect Requests` option in the settings. That means that everytime you start up your studio, your connections will be reset and you will see connection all over the place. The current workaround is to modify your Studio `.xml` file. **This workaround gets reset every time you save your studio. It's best to do this once all your connections are finalized.** Navigate to `~/.ladish/studios/`, then open your Studio `.xml` file. Add an `a` in the `<parameter path="/engine/self-connect-mode">a</parameter>` line. The `a` tells [Cadence](#cadence) to ignore all self-connect requests. Save and exit the config file.
 
 ### Catia
-
 Catia is a similar application to [Claudia](#claudia), but is used for the current session only. When you restart your PC, all connections made under Catia are lost. If you want to save your connections, it's best to use [Claudia](#claudia).
 
 ## Qjackctl
-
 As mentioned previous, Qjackctl is a light-weight JACK tool which accomplishes many of the same functions as KXStudio. However, it's not as feature-rich. At the time of writing, my needs don't require me to use more than this.
 
 To install, simply run the following command through the APT repos:
@@ -138,7 +126,6 @@ Qjackctl has a few options: a Connections tab that looks a lot like [Catia](#cat
 Once you click on Setup, you'll want to configure it to your liking. Here is how I've set mine up:
 
 ### Settings
-
 Samplerate: 48Khz
 Frames/Period: 1024
 Periods/Buffer: 2
@@ -149,7 +136,6 @@ Self connect mode: Ignore all self connect requests
 Then set your Output/Input devices.
 
 ### Misc
-
 I've checked the following boxes:
 
 - Start JACK audio server on application startup
@@ -161,7 +147,6 @@ I've checked the following boxes:
 - Replace Connections with Graph button
 
 ### Options
-
 Instead of modifying the `/etc/pulse/default.pa`, you can create a bash
 script which will create the JACK audio modules in PulseAudio and which
 will run at system startup.
@@ -197,5 +182,4 @@ The & is important so you can continue to perform actions w/ Qjackctl.
 You'll also want to toggle `Activate Patchbay Persistence` once you've configured your connections to your liking and saved the session so you it starts whenever you boot your PC.
 
 ## Starting JACK on system boot
-
 If you want JACK to start on system boot, simply add [Qjackctl](#qjackctl) or [Cadence](#cadence) (depending on the option you choose) to your startup applications.

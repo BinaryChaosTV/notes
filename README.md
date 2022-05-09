@@ -4,13 +4,19 @@ A collection of notes, sharing my daily thoughts, or sharing instructions or doc
 
 ## Table of Contents
 
+### Zettelkasten
+[zet](zet/README.md)
+
 ### Distributions
 #### Debian-based
 [Pop!_OS](POP_OS.md)
 
 ### Learning
-1. [Using the Terminal](TERMINAL.md)
-2. [Using Vim](VIM.md)
+[Using the Terminal](TERMINAL.md)
+[Using Vim](VIM.md)
 
 ### Audio
-1. [JACK Audio + Cadence](JACK.md)
+[JACK Audio + Cadence](JACK.md)
+
+### Streaming
+[OBS](OBS.md)

@@ -11,7 +11,6 @@ If you're going to use Vim, I highly recommend you install [Tim Pope's Pathogen]
 Next, for theme colours (which don't always work out of the box in the terminal), I highly recommend [Ethan Shoover's Solarized for VIM](https://github.com/altercation/vim-colors-solarized).
 
 ## Commands
-
 - `i` - Insert mode  
 - `:` - Command Mode  
 * `:q` - Quit without saving

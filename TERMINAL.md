@@ -28,7 +28,6 @@ The setup file will add a symlink to your `.bashrc`, `.inputrc`, `.profile`, `.v
 It will also install [Ethan Shoover's Solarized for VIM](https://github.com/altercation/vim-colors-solarized) and [Tim Pope's Pathogen](https://github.com/tpope/vim-pathogen).
 
 ## Commands
-
 `type <command>` - Will tell you what type of command it is.
 
 `clear` - Erase all text on the terminal.  
@@ -64,6 +63,5 @@ It will also install [Ethan Shoover's Solarized for VIM](https://github.com/alte
 `cat` - Displays what's inside a file. *Great for single line files*  
 
 ## Shortcuts
-
 `Ctrl + C` - Cancel an input.  
 `Ctrl + D` - Uuuuh...yes.

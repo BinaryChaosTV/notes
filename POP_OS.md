@@ -1,6 +1,5 @@
 tags: #distributions, #debian-based
 # Setting up Pop_OS!
-
 This is a quick guide on programs to install on a fresh install of Pop_OS! At the time of writing, Pop_OS! is currently on version 22.04.
 
 In some cases, I will share some links to the installation instructions. In other cased, I will simply paste the command to input in the CLI, for simplicity. I will also try my best to divide the instructions in categories, in a logical order so you're not missing a dependency when you reach that step.
@@ -31,7 +30,6 @@ Open Settings (Use the Super Key, and type `settings` in the box).
 Pop_OS installs quite a few extensions by default. Here are some of my personal favourites that I can't go without.
 
 #### GNOME-tweaks
-
 For some reason, the GNOME desktop doesn't include these settings out of the box. However, some of the configuration I like to have in GNOME would be impossible without gnome-tweaks. To get it, run the command below:
 
 	sudo apt install gnome-tweaks
@@ -42,7 +40,7 @@ Hit the super key, and type in `Tweaks` to open the extension settings.
 2. Top Bar -- Toggle Weekday, Date & Seconds ON.
 
 #### Dash to Panel
-[Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
+[Dash to Panel Extension](https://extensions.gnome.org/extension/1160/dash-to-panel/)
 
 Moves your top bar to the bottom of the screen and acts like a traditional Windows taskbar. It's really fantastic.
 
@@ -59,12 +57,11 @@ Moves your top bar to the bottom of the screen and acts like a traditional Windo
 	1. Show favorite applications, on secondary panels and show running applications.
 
 #### Sound Input & Output Device Chooser
-[Sound Input & Output Device Chooser](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
+[Sound Input & Output Device Chooser Extension](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
 
 Adds the ability to select your audio device from the taskbar. You can hide any devices you don´t want displayed to clean up the selector.
 
 ## Adding extra HDDs & SSDs
-
 If you have any additional drives to add, you can do so from the `Disks` utility. To do so, Hit Super, and type `Disks`.
 
 1. Select the disk drive and format a partition to `Ext4` if needed.
@@ -77,7 +74,6 @@ If you have any additional drives to add, you can do so from the `Disks` utility
 If you have multiple partitions to add, change *extradrive* to another name.
 
 ## Drivers & Updates
-
 Whenever you want to install updates, run the following commands in a terminal:
 
 	sudo apt update
@@ -85,13 +81,19 @@ Whenever you want to install updates, run the following commands in a terminal:
 
 You should perform these regularly whenever you want to install software to ensure everything is up to date.
 
+### Nvidia
 In Pop_OS!, the NVIDIA driver is installed by default. However, you can install a newer version by visiting the `Pop!_Shop`. Simply hit Super, and type `Pop!_Shop`. Then, go to `Installed`. Once loaded, the first section should be `Drivers`. Install the latest one (or the one you prefer). Once installed, reboot your PC.
 
 Once rebooted, hit Super, and type `NVIDIA X server settings`. On the first tab, you can find the driver version. If it's the same as the one you last installed, the driver installed properly.
 
+### Logitech G105 Keyboard
+[Sidewinderd Repo](https://github.com/tolga9009/sidewinderd)
+
+Tolga9009 created the Sidewinder daemon to support certain keyboards, notably the G103 / G105 / G710 keyboards which have G-keys for easy macros. Personally, I use these keys for streaming hotkeys. To install this daemon, follow the instructions for the [Ubuntu Installation](https://github.com/tolga9009/sidewinderd/wiki/Installation).
+
 ## Password management
 ### Bitwarden
-[Bitwarden](https://bitwarden.com/download/)
+[Bitwarden Website](https://bitwarden.com/download/)
 
 Personally, I install the application through the .deb file. However, you cannot receive automatic updates via the .deb file. Hence, it may be preferable to install as an .AppImage, or through Snap. Once installed, sign in, as you're going to need your passwords for many of the other applications and configurations.
 
@@ -101,7 +103,7 @@ Personally, I install the application through the .deb file. However, you cannot
 
 ## Browsers
 ### Brave
-[Brave](https://brave.com/linux/#release-channel-installation)
+[Brave Website](https://brave.com/linux/#release-channel-installation)
 
 Despite Firefox being the default and privacy-focused browser, I really like Brave for the Brave Rewards and for being privacy focused.
 
@@ -132,7 +134,9 @@ Additionally to the [Sound Input Output Device Chooser](#sound-input--output-dev
 	sudo apt install pavucontrol
 
 ### PipeWire
-[PipeWire website](https://pipewire.org/)
+[PipeWire Website](https://pipewire.org/)
+**TODO: Create Pipewire.md**
+
 As of Pop_OS 22.04, PipeWire is now the default audio driver for the distribution. PipeWire is a happy middle between the simplicity of PulseAudio and the complexity of [JACK](JACK.md), built for the average user.
 
 The best way I've found to configure PipeWire is to set it up similarly to [JACK](JACK.md), minus some of the extra fluff required by [JACK](JACK.md) to function properly. As such, the only tools I use for my audio is [QJackCTL](JACK.md#qjackctl) and [PAVUControl](#pavucontrol).
@@ -188,7 +192,7 @@ Signal is an end-to-end encrypted messaging app for mobile devices. However, it 
 Follow the instructions for installing Spotify in the website above. I prefer installing it through the .deb package at the bottom of the page. At the moment, the Startup behaviour for Spotify doesn´t work on Linux. In the off-chance it works however, you can toggle Spotify to start Minimized and to minimize when you click the close button.
 
 ### VLC
-[VLC website](https://www.spotify.com/ca-en/download/linux/)
+[VLC Website](https://www.spotify.com/ca-en/download/linux/)
 
 VLC is probably THE best media player to play local videos and music on Linux. It supports multiple codecs that the default video and music player on Linux doesn't. Just get it. Click on the website above, and install it through the CLI.
 
@@ -196,11 +200,20 @@ VLC is probably THE best media player to play local videos and music on Linux. I
 ### OBS
 [OBS Website](https://obsproject.com/download)
 
-Follow the instructions in the website above to install OBS. FFMPEG is necessary to run OBS on Linux. It will be installed at the same time as OBS if you follow the instructions from the website.
+[OBS](OBS.md) is a powerful streaming and recording application available on Windows, MacOS and Linux. The configuration and setup vary depending on your OS. For a full breakdown of my personal installation process and configuration, feel free to follow the documentation found [here](OBS.md).
 
-What makes OBS a fantastic streaming application is its' modularity through Plugins. At this point, some plugins are installed by default on Linux (such as Browser source), but here is a short list of some I like to add.
+## Productivity
+### Obsidian
+[Obsidian Website](https://obsidian.md/) | [Documentation](https://help.obsidian.md/Obsidian/Index)
 
-#### OBS Captions Plugin
-[OBS Captions Plugin](https://github.com/ratwithacompiler/OBS-captions-plugin#installation-linux)
+A phenomenal Text Editor which allows you to write notes in Markdown. You can link different markdown files together with ease and even create "Zettelkasten" notes. It is downloadable as an AppImage, Flatpak, Snap and .deb file.
 
-Installation for this plugin is as simple as downloading it from the Releases section and drag & drop in the `~/.config/obs-studio/plugins` directory. Make sure you place the entire folder in there, and not just the files. Restart OBS, and it should load on startup.
+For a price, you can pay for their Sync option which allows you to sync your vault across multiple devices. If you don't feel like paying for this service, you can accomplish this with other Cloud Drives such as Dropbox, Google Drive or OneDrive (although it's not officially supported).
+
+You can also pay to allow publishing these notes to a website. I figure it's like Github pages, but I haven't looked too much into it.
+
+### Visual Studio Code
+[VS Code Website](https://code.visualstudio.com/)
+**TODO: Create VSCODE.md for installation and configuration**
+
+VS Code is an IDE for Software Development. As it's owned by Microsoft, you can link directly to a MS account or to Github, and download a plethora of extensions. Available as a .deb file.
