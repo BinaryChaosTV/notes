@@ -1,7 +1,0 @@
-index:
-tags: 
-
-# 
-
----
-## References

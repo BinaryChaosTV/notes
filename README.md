@@ -4,8 +4,7 @@ A collection of notes, sharing my daily thoughts, or sharing instructions or doc
 
 ## Table of Contents
 
-### Zettelkasten
-[zet](zet/README.md)
+### [Zettelkasten](https://github.com/controlshifted/zet)
 
 ### Distributions
 #### Debian-based
