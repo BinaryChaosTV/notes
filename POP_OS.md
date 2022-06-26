@@ -1,4 +1,5 @@
 tags: #distributions, #debian-based
+
 # Setting up Pop_OS!
 This is a quick guide on programs to install on a fresh install of Pop_OS! At the time of writing, Pop_OS! is currently on version 22.04.
 
@@ -92,6 +93,7 @@ Once rebooted, hit Super, and type `NVIDIA X server settings`. On the first tab,
 Tolga9009 created the Sidewinder daemon to support certain keyboards, notably the G103 / G105 / G710 keyboards which have G-keys for easy macros. Personally, I use these keys for streaming hotkeys. To install this daemon, follow the instructions for the [Ubuntu Installation](https://github.com/tolga9009/sidewinderd/wiki/Installation).
 
 ## Password management
+
 ### Bitwarden
 [Bitwarden Website](https://bitwarden.com/download/)
 
@@ -102,6 +104,7 @@ Personally, I install the application through the .deb file. However, you cannot
 	1. Check Enable Tray Icon, Close to Tray, Start to Tray, Start automatically on login, and Enable browser integration.
 
 ## Browsers
+
 ### Brave
 [Brave Website](https://brave.com/linux/#release-channel-installation)
 
@@ -157,6 +160,7 @@ Have your new script launch on startup through `Startup Applications`. Afterward
 PipeWire creates new audio devices whenever a new application launches and requires audio. For example, [Discord](#Discord) will use the WebRTC (which you can set up in the Patchbay to connect to the `Discord_OUT` and your speakers), and [Spotify](#Spotify) / [Brave](#Brave) will also have new devices created when they're playing sound (Simply connect these to the `WebMusic_OUT` Sink).
 
 ## Gaming
+
 ### Steam
 [Steam Website](https://store.steampowered.com/about/)
 
@@ -168,7 +172,25 @@ Click on `Install Steam`, place the .deb file your downloads folder, then instal
 	3. Shader Pre-Caching -- Disable Pre-caching. It causes some games to take a long time to load, or not load at all.
 	4. Steam Play -- Enable Steam Play for all titles. Set to latest version of Proton.
 
+#### Adding a controller to Steam
+
+By default, Steam should detect when you plug in a USB controller. This is true for Xbox and PS4 controllers by default. However, if you're like me and have an obscure USB controller like a Pokken DX Hori controller for the Switch but use it for Retro gaming, then you may need to add it to the list of controllers for Steam.
+
+Plug in your USB gamepad and run the following command: `lsusb -v`. Find your gamepad, and pay close attention to the `idVendor` and the `idProduct`. Note down the 4 digits after the `0x`.
+
+Navigate to `/lib/udev/rules.d/60-steam-input.rules` and add the following to the file (You will need to run as root):
+
+    KERNEL=="hidraw*", ATTRS{idVendor}=="0f0d", ATTRS{idProduct}=="0092", MODE="0660", TAG+="uaccess"
+
+In my case, the `idVendor` and `idProduct` correspond to the PokkenDX Hori Controller. If your digits vary, then adjust as necessary. Save and close the file. Now we need to reload the udev rules. In terminal, run the following commands:
+
+    sudo udevadm control --reload-rules
+    sudo udevadm trigger
+
+If everything worked as planned, Steam should display a quick toast saying it's adding your gamepad.
+
 ## Social Media & Chat Applications
+
 ### Discord
 [Discord Website](https://discord.com/)
 
@@ -186,6 +208,7 @@ Discord runs as a Chromium browser, and just like Brave, you can disable Hardwar
 Signal is an end-to-end encrypted messaging app for mobile devices. However, it also comes with a desktop app for Linux. To install, simply click on `Download for Linux` and follow the instructions there.
 
 ## Entertainment
+
 ### Spotify
 [Spotify Website](https://www.spotify.com/ca-en/download/linux/)
 
@@ -197,12 +220,14 @@ Follow the instructions for installing Spotify in the website above. I prefer in
 VLC is probably THE best media player to play local videos and music on Linux. It supports multiple codecs that the default video and music player on Linux doesn't. Just get it. Click on the website above, and install it through the CLI.
 
 ## Streaming
+
 ### OBS
 [OBS Website](https://obsproject.com/download)
 
 [OBS](OBS.md) is a powerful streaming and recording application available on Windows, MacOS and Linux. The configuration and setup vary depending on your OS. For a full breakdown of my personal installation process and configuration, feel free to follow the documentation found [here](OBS.md).
 
 ## Productivity
+
 ### Obsidian
 [Obsidian Website](https://obsidian.md/) | [Documentation](https://help.obsidian.md/Obsidian/Index)
 
