@@ -9,6 +9,7 @@ A collection of notes, sharing my daily thoughts, or sharing instructions or doc
 ### Distributions
 #### Debian-based
 [Pop!_OS](POP_OS.md)
+[Raspberry Pi](RASPPI.md)
 
 ### Learning
 [Using the Terminal](TERMINAL.md)
