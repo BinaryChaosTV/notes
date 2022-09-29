@@ -8,15 +8,15 @@ A collection of notes, sharing my daily thoughts, or sharing instructions or doc
 
 ### Distributions
 #### Debian-based
-[Pop!_OS](POP_OS.md)
-[Raspberry Pi](RASPPI.md)
+- [Pop!_OS](POP_OS.md)
+- [Raspberry Pi](RASPPI.md)
 
 ### Learning
-[Using the Terminal](TERMINAL.md)
-[Using Vim](VIM.md)
+- [Using the Terminal](TERMINAL.md)
+- [Using Vim](VIM.md)
 
 ### Audio
-[JACK Audio + Cadence](JACK.md)
+- [JACK Audio + Cadence](JACK.md)
 
 ### Streaming
-[OBS](OBS.md)
+- [OBS](OBS.md)
