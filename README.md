@@ -7,16 +7,22 @@ A collection of notes, sharing my daily thoughts, or sharing instructions or doc
 ### [Zettelkasten](https://github.com/controlshifted/zet)
 
 ### Distributions
+
 #### Debian-based
-- [Pop!_OS](POP_OS.md)
+
+- [Pop!\_OS](POP_OS.md)
 - [Raspberry Pi](RASPPI.md)
 
 ### Learning
+
 - [Using the Terminal](TERMINAL.md)
 - [Using Vim](VIM.md)
+- [Using Git](GIT.md)
 
 ### Audio
+
 - [JACK Audio + Cadence](JACK.md)
 
 ### Streaming
+
 - [OBS](OBS.md)
