@@ -19,6 +19,13 @@ A collection of notes, sharing my daily thoughts, or sharing instructions or doc
 - [Using Vim](VIM.md)
 - [Using Git](GIT.md)
 
+#### Javascript
+
+- [Using Regular Expressions (REGEX)](REGEX.md)
+- [Javascript ECMAScript 6](ES6.md)
+- [Object Oriented Programming (OOP)](OOP.md)
+- [Functional Programming](FUNCPROG.md)
+
 ### Audio
 
 - [JACK Audio + Cadence](JACK.md)
